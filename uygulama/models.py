@@ -21,8 +21,8 @@ class Category(models.Model):
 #     verbose_name                =           ('Category')
 
 class Blog(models.Model):
-    title = models.CharField(max_length=100, unique=True)
+    title = models.CharField(max_length=100, unique=True,help_text="Başlık buraya yazılacak")
     slug = models.SlugField(max_length=100, unique=True)
-    body = models.TextField()
+    body = models.TextField(help_text="Makale buraya yazılacak")
     posted = models.DateField(db_index=True, auto_now_add=True)
     # category = models.ForeignKey(Category, on_delete=models.CASCADE,verbose_name=('Kategori'))

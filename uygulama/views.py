@@ -6,8 +6,5 @@ from django.http import HttpResponse
 from uygulama import models
 
 
-def index(request):
-    return HttpResponse("BLOG")
-
 def blog(request):
     return HttpResponse('Yazılar burada')
