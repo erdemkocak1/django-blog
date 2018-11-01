@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+<style>
+    table{
+        background: lightgrey;
+        border-collapse: collapse;
+        width: 80%;
+        position: center;
+
+
+    }
+table, th, td {
+    border: 1px solid black;
+    height: 30px;
+     padding: 5px;
+}
+th{
+    background: cornflowerblue;
+}
+
+</style>
+
+
+</head>
+<body>
+
+<table class="table table-hover table-dark" align="center" >
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Baslik</th>
+      <th scope="col">Yazar</th>
+      <th scope="col">Kategori</th>
+      <th scope="col">Olusturulma Zamani</th>
+        <th scope="col">Slug</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for i in blog_list  %}
+    <tr>
+      <th scope="row">i</th>
+      <td>{{ i.title }}</td>
+      <td>{{ i.author }}</td>
+      <td>{{ i.category }}</td>
+      <td>{{ i.dateet }}</td>
+      <td>{{ i.slug }}</td>
+
+
+    </tr>
+  {% endfor %}
+
+  </tbody>
+</table>
+
+</body>
+</html>

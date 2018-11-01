@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<title>My Example</title>
+<style>
+    body {
+        display: grid;
+        grid-template-areas: "header header header" "nav article ads" "footer footer footer";
+        grid-template-rows: 50px 1fr 50px;
+        grid-template-columns: 10% 1fr 10%;
+        grid-gap: 2px;
+        background: white;
+        height: 100vh;
+        margin: 0;
+    }
+
+    #pageHeader {
+        grid-area: header;
+    }
+
+    #pageFooter {
+        grid-area: footer;
+    }
+
+    #makaleler {
+        grid-area: article;
+    }
+
+    #kategoriler {
+        grid-area: nav;
+    }
+
+    #filtreler {
+        grid-area: ads;
+    }
+
+     nav, div {
+        padding: 0px;
+        background: grey;
+    }
+
+    header, footer, article {
+        padding: 0px;
+        background: lightgray;
+    }
+</style>
+<body>
+<header id="pageHeader">Blog Sitesi
+    <button id="button">Ana Sayfa</button>
+    <button id="button">Hakimizda</button>
+      <input type="text" class="searchTerm" placeholder="What are you looking for?">
+      <button type="submit" class="searchButton">
+        <i class="fa fa-search">SEARCH</i>
+     </button>
+
+</header>
+
+<article id="makaleler">Makaleler
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Baslk</th>
+      <th scope="col">Yazar</th>
+      <th scope="col">Kategori</th>
+      <th scope="col">Olusturulma Zamani</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for i in blog_list  %}
+    <tr>
+      <th scope="row">i</th>
+      <td>{{ i.title }}</td>
+      <td>{{ i.slug }}</td>
+      <td>@{{ i.author }}</td>
+    </tr>
+  {% endfor %}
+
+  </tbody>
+</table>
+
+</article>
+<nav id="kategoriler">Kategoriler</nav>
+<div id="filtreler">Filtreler</div>
+<footer id="pageFooter">Gerekirse</footer>
+</body>
