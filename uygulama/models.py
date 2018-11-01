@@ -1,6 +1,8 @@
 from django.db import models
 
 
+
+
 class Category(models.Model):
     title = models.CharField('Kategori', max_length=100, unique=True, help_text="Kategori İsmi Yazılacak")
     durum = models.BooleanField('Erişime Açık', default=True)

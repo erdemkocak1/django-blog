@@ -6,7 +6,7 @@
         grid-template-areas: "header header header" "nav article ads" "footer footer footer";
         grid-template-rows: 50px 1fr 50px;
         grid-template-columns: 10% 1fr 10%;
-        grid-gap: 2px;
+        grid-gap: 0px;
         background: white;
         height: 100vh;
         margin: 0;
@@ -18,18 +18,22 @@
 
     #pageFooter {
         grid-area: footer;
+        background: aquamarine;
     }
 
     #makaleler {
         grid-area: article;
+
     }
 
     #kategoriler {
         grid-area: nav;
+        text-align: center;
     }
 
     #filtreler {
         grid-area: ads;
+        text-align: center;
     }
 
      nav, div {
@@ -41,27 +45,46 @@
         padding: 0px;
         background: lightgray;
     }
+
+        table{
+        background: lightgrey;
+        border-collapse: collapse;
+        width: 100%;
+        position: center;
+    }
+
+
+table, th, td {
+    border: 1px solid black;
+    height: 30px;
+     padding: 5px;
+}
+th{
+    background: cornflowerblue;
+}
+
 </style>
 <body>
-<header id="pageHeader">Blog Sitesi
+<header id="pageHeader">
     <button id="button">Ana Sayfa</button>
     <button id="button">Hakimizda</button>
-      <input type="text" class="searchTerm" placeholder="What are you looking for?">
+      <input type="text" class="searchTerm" placeholder="Arama kriterlerini belirtin">
       <button type="submit" class="searchButton">
         <i class="fa fa-search">SEARCH</i>
      </button>
 
 </header>
 
-<article id="makaleler">Makaleler
-<table class="table table-dark">
+<article id="makaleler" >
+<table class="table table-hover table-dark" align="center" >
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Baslk</th>
+      <th scope="col">Baslik</th>
       <th scope="col">Yazar</th>
       <th scope="col">Kategori</th>
       <th scope="col">Olusturulma Zamani</th>
+        <th scope="col">Slug</th>
     </tr>
   </thead>
   <tbody>
@@ -69,14 +92,17 @@
     <tr>
       <th scope="row">i</th>
       <td>{{ i.title }}</td>
+      <td>{{ i.author }}</td>
+      <td>{{ i.category }}</td>
+      <td>{{ i.dateet }}</td>
       <td>{{ i.slug }}</td>
-      <td>@{{ i.author }}</td>
+
     </tr>
+
   {% endfor %}
 
   </tbody>
 </table>
-
 </article>
 <nav id="kategoriler">Kategoriler</nav>
 <div id="filtreler">Filtreler</div>
