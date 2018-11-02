@@ -14,10 +14,15 @@ def blog(request):
 
     return render(request, 'main.html', {'blog_list': blog_list})
 
-    # return mark_safe (blog_list)
 
-def blogdetay(request,slug):
+def blogdetay(request, slug):
+
     blog_detay = Blog.objects.get(slug=slug)
 
     return render(request, 'blog_detay.html', {'blog_detay': blog_detay})
 
+#
+# def categorysec(request, category):
+#     category_sec = Blog.objects.filter(category=category)
+#
+#     return render(request, 'category.html', {'category_sec': category_sec})

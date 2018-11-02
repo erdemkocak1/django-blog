@@ -23,6 +23,7 @@ urlpatterns = [
     # path('', views.index, name='index'),
     path('', admin.site.urls),
     path('blog/', views.blog),
-    path('blog/detay/', views.blogdetay),
+    path('blog/detay/<slug:slug>/', views.blogdetay),
+    # path('blog/detay/category/<category:category>/', views.categorysec),
 
 ]

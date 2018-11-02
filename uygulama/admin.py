@@ -8,7 +8,7 @@ from uygulama.models import Blog, Category
 
 
 class BlogAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'category', 'timeread', 'dateet', 'durum')#
+    list_display = ('title', 'author', 'category', 'timeread', 'dateet', 'durum')  #
 
     fields = ('title', 'slug', 'category', 'body', 'author', 'durum', 'timeread')
 
@@ -19,7 +19,7 @@ class BlogAdmin(admin.ModelAdmin):
     search_fields = ['title', 'author']
     list_max_show_all = False
     list_per_page = 5
-    prepopulated_fields =   {"slug": ("category","title")}
+    prepopulated_fields = {"slug": ("category", "title")}
 
 
 admin.site.register(Blog, BlogAdmin)

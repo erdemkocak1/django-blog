@@ -1,8 +1,6 @@
 from django.db import models
 
 
-
-
 class Category(models.Model):
     title = models.CharField('Kategori', max_length=100, unique=True, help_text="Kategori İsmi Yazılacak")
     durum = models.BooleanField('Erişime Açık', default=True)
@@ -10,9 +8,9 @@ class Category(models.Model):
 
     slug = models.CharField(('Link'), max_length=100, help_text="Otomatik oluşturulacak", default='')
 
-
     def __str__(self):
         return '%s' % self.title
+
 
 class Meta:
     verbose_name_plural = ('Category')
@@ -26,18 +24,11 @@ class Blog(models.Model):
     slug = models.CharField(('Link'), max_length=100, help_text="Otomatik oluşturulacak", default='')
     body = models.TextField('İçerik', help_text="Makale buraya yazılacak", blank=False, null=False, default='')
     author = models.CharField('Yazar', max_length=20, help_text="Yazar", null=False, default='')
-    # category = models.CharField('Kategori', max_length=10, blank=False, null=False, default='')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Kategori')
     durum = models.BooleanField('Erişim', default=True)
     dateet = models.DateTimeField('Oluşturulma Zamanı', auto_now=True)
     timeread = models.CharField('Okuma Süresi', max_length=2, choices=CHOICES, default=1)
 
-    # def save(self, *args, **kwargs):
-    #     super(Blog, self).save(*args, **kwargs)
-
     class Meta:
         verbose_name_plural = ('Blog')
         verbose_name = ('Blog')
-    #
-    # def get_absolute_url(self):
-    #     return "/%s/%s/%s/" % (self.category.slug, self.id, self.slug)
