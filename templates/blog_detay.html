@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ blog_detay.title }}</title>
+
+    <style>
+        table {
+            background: lightgrey;
+            border-collapse: collapse;
+            width: 80%;
+            position: center;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            height: 30px;
+            padding: 5px;
+        }
+
+        th {
+            background: cornflowerblue;
+        }
+
+        td {
+            width: 250px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 50px;
+        }
+    </style>
+</head>
+<body>
+
+
+<table class="table table-bordered" align="center">
+    <thead>
+    <tr>
+        <th colspan="3">{{ blog_detay.title }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td colspan="2">{{ blog_detay.slug }}</td>
+        <td>{{ blog_detay.author }}</td>
+    </tr>
+    <tr>
+        <td colspan="3">{{ blog_detay.body }}</td>
+    </tr>
+    <tr>
+        <td colspan="2">{{ blog_detay.datee }}</td>
+        <td colspan="2">{{ blog_detay.timeread }}</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

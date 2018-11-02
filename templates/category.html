@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kategoriye ait Makaleler</title>
+
+    <style>
+        table {
+            background: lightgrey;
+            border-collapse: collapse;
+            width: 80%;
+            position: center;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            height: 30px;
+            padding: 5px;
+        }
+
+        th {
+            background: cornflowerblue;
+        }
+
+        td {
+            width: 250px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 50px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+
+<table class="table table-hover table-dark" align="center">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Baslik</th>
+        <th scope="col">İçerik</th>
+        <th scope="col">Yazar</th>
+        <th scope="col">Kategori</th>
+        <th scope="col">Olusturulma Zamani</th>
+        <th scope="col">Okuma Süresi</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for i in category_sec %}
+        <tr>
+            <th scope="row">i</th>
+            <td><a href="/blog/detay/{{ i.slug }}/">{{ i.title }}</a></td>
+            <td>{{ i.body }}</td>
+            <td>{{ i.author }}</td>
+            <td><a href="/blog/category/{{ i.category }}/"><{{ i.category }}/a></td>
+            <td>{{ i.dateet }}</td>
+            <td>{{ i.timeread }}dk</td>
+        </tr>
+
+    {% endfor %},
+
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -16,7 +16,6 @@ def blog(request):
 
 
 def blogdetay(request, slug):
-
     blog_detay = Blog.objects.get(slug=slug)
 
     return render(request, 'blog_detay.html', {'blog_detay': blog_detay})
