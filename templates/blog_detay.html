@@ -10,11 +10,12 @@
             border-collapse: collapse;
             width: 80%;
             position: center;
+
         }
 
         table, th, td {
             border: 1px solid black;
-            height: 30px;
+            height: 40px;
             padding: 5px;
         }
 
@@ -24,10 +25,19 @@
 
         td {
             width: 250px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            white-space: initial;
             max-width: 50px;
+            overflow: initial;
+        }
+
+        button {
+            margin-left: 190px;
+            margin-top: 2px;
+            width: 100px;
+            height: 40px;
+            background: transparent;
+            color: black;
+            border: none;
         }
     </style>
 </head>
@@ -35,25 +45,30 @@
 
 
 <table class="table table-bordered" align="center">
+
+
     <thead>
+    <td><a href="/cat/{{ blog_detay.category }}/">{{ blog_detay.category }}</a></td>
+    <td colspan="2"><a href="/blog/detay/{{ blog_detay.slug }}/">{{ blog_detay.title }}</a></td>
     <tr>
         <th colspan="3">{{ blog_detay.title }}</th>
     </tr>
     </thead>
     <tbody>
     <tr>
-        <td colspan="2">{{ blog_detay.slug }}</td>
-        <td>{{ blog_detay.author }}</td>
+        <td colspan="2">Slug: {{ blog_detay.slug }}</td>
+        <td>Yazar: {{ blog_detay.author }}</td>
     </tr>
     <tr>
         <td colspan="3">{{ blog_detay.body }}</td>
     </tr>
     <tr>
-        <td colspan="2">{{ blog_detay.datee }}</td>
-        <td colspan="2">{{ blog_detay.timeread }}</td>
+        <td colspan="2">Oluşturulma Tarihi: {{ blog_detay.dateet }}</td>
+        <td colspan="2">Okuma Süresi: {{ blog_detay.timeread }}dk</td>
     </tr>
     </tbody>
 </table>
+<button onclick="window.location.href='http://127.0.0.1:8000/blog/'">Makalelere Dön</button>
 
 </body>
 </html>

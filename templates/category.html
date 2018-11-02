@@ -30,6 +30,15 @@
             max-width: 50px;
         }
 
+        button {
+            margin-left: 190px;
+            margin-top: 2px;
+            width: 100px;
+            height: 40px;
+            background: transparent;
+            color: black;
+            border: none;
+        }
     </style>
 
 </head>
@@ -56,15 +65,17 @@
             <td><a href="/blog/detay/{{ i.slug }}/">{{ i.title }}</a></td>
             <td>{{ i.body }}</td>
             <td>{{ i.author }}</td>
-            <td><a href="/blog/category/{{ i.category }}/"><{{ i.category }}/a></td>
+            <td><a href="/cat/{{ i.category }}/">{{ i.category }}</a></td>
             <td>{{ i.dateet }}</td>
             <td>{{ i.timeread }}dk</td>
         </tr>
 
-    {% endfor %},
+    {% endfor %}
 
     </tbody>
 </table>
+
+<button onclick="window.location.href='http://127.0.0.1:8000/blog/'">Tüm Makaleler</button>
 
 </body>
 </html>

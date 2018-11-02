@@ -6,7 +6,7 @@ class Category(models.Model):
     durum = models.BooleanField('Erişime Açık', default=True)
     adet = models.IntegerField('İçerik Sayısı', default=0)
 
-    slug = models.CharField(('Link'), max_length=100, help_text="Otomatik oluşturulacak", default='')
+    slug = models.CharField('Link', max_length=100, help_text="Otomatik oluşturulacak", default='')
 
     def __str__(self):
         return '%s' % self.title

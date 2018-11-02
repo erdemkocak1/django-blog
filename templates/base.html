@@ -23,6 +23,7 @@
 
     #makaleler {
         grid-area: article;
+        white-space: nowrap;
 
     }
 
@@ -36,7 +37,7 @@
         text-align: center;
     }
 
-     nav, div {
+    nav, div {
         padding: 0px;
         background: grey;
     }
@@ -46,63 +47,68 @@
         background: lightgray;
     }
 
-        table{
+    table {
         background: lightgrey;
         border-collapse: collapse;
         width: 100%;
         position: center;
     }
 
+    table, th, td {
+        border: 1px solid black;
+        height: 30px;
+        padding: 5px;
+    }
 
-table, th, td {
-    border: 1px solid black;
-    height: 30px;
-     padding: 5px;
-}
-th{
-    background: cornflowerblue;
-}
+    th {
+        background: cornflowerblue;
+    }
 
 </style>
+
 <body>
 <header id="pageHeader">
     <button id="button">Ana Sayfa</button>
     <button id="button">Hakimizda</button>
-      <input type="text" class="searchTerm" placeholder="Arama kriterlerini belirtin">
-      <button type="submit" class="searchButton">
+    <input type="text" class="searchTerm" placeholder="Arama kriterlerini belirtin">
+    <button type="submit" class="searchButton">
         <i class="fa fa-search">SEARCH</i>
-     </button>
+    </button>
 
 </header>
 
-<article id="makaleler" >
-<table class="table table-hover table-dark" align="center" >
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Baslik</th>
-      <th scope="col">Yazar</th>
-      <th scope="col">Kategori</th>
-      <th scope="col">Olusturulma Zamani</th>
-        <th scope="col">Slug</th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for i in blog_list  %}
-    <tr>
-      <th scope="row">i</th>
-      <td>{{ i.title }}</td>
-      <td>{{ i.author }}</td>
-      <td>{{ i.category }}</td>
-      <td>{{ i.dateet }}</td>
-      <td>{{ i.slug }}</td>
+<article id="makaleler">
+    <table class="table table-hover table-dark" align="center">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Baslik</th>
+            <th scope="col">Yazar</th>
+            <th scope="col">Kategori</th>
+            <th scope="col">Olusturulma Zamani</th>
+            <th scope="col">Okuma Süresi</th>
 
-    </tr>
+        </tr>
+        </thead>
+        <tbody>
+    {% for i in blog_list %}
+        <tr>
+            <th scope="row">i</th>
+            <td><a href="/blog/detay/{{ i.slug }}/">{{ i.title }}</a></td>
+            <td>{{ i.author }}</td>
+            <td><a href="https://makdos.blog/">{{ i.category }}</a></td>
+            {#                  <td><a href="/blog/detay/{{ i.category }}/"><{{ i.title }}/a></td>#}
 
-  {% endfor %}
+            <td>{{ i.dateet }}</td>
+            <td>{{ i.timeread }}dk</td>
+            {#            <td><a href="https://makdos.blog/">Makaleye Git</a></td>#}
+        </tr>
 
-  </tbody>
-</table>
+    {% endfor %}
+
+
+        </tbody>
+    </table>
 </article>
 <nav id="kategoriler">Kategoriler</nav>
 <div id="filtreler">Filtreler</div>
