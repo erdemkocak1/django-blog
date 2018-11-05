@@ -61,4 +61,16 @@ def blogdetay(request, slug):
 def categorysec(request, slug):
     category_sec = Blog.objects.filter(category__slug=slug)
 
+    page = request.GET.get('sayfa', 1)
+
+    paginator = Paginator(category_sec, 20)
+    try:
+        category_sec = paginator.page(page)
+    except PageNotAnInteger:
+        category_sec = paginator.page(1)
+    except EmptyPage:
+        category_sec = paginator.page(paginator.num_pages)
+
+
+
     return render(request, 'category.html', {'category_sec': category_sec})

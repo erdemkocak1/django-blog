@@ -7,8 +7,8 @@
         display: grid;
         grid-template-areas: "header header header" "nav article ads" "footer footer footer";
         grid-template-rows: 50px 1fr 50px;
-        grid-template-columns: 10% 1fr 10%;
-        grid-gap: 0px;
+        grid-template-columns: 10% 1fr 20%;
+        grid-gap: 2px;
         background: white;
         height: 100vh;
         margin: 0;
@@ -26,22 +26,25 @@
     #makaleler {
         grid-area: article;
         white-space: nowrap;
+        background: white;
 
     }
 
     #kategoriler {
         grid-area: nav;
         text-align: center;
+        background-color: white;
     }
 
     #filtreler {
         grid-area: ads;
         text-align: center;
+        background: limegreen;
     }
 
     nav, div {
         padding: 0px;
-        background: grey;
+        background: white;
     }
 
     header, footer, article {
@@ -52,7 +55,7 @@
     table {
         background: lightgrey;
         border-collapse: collapse;
-        width: 100%;
+    {#width: 112%;#} width: 100%;
         position: center;
     }
 
@@ -93,13 +96,17 @@
 </style>
 
 <body>
-<header id="pageHeader">
-    <button id="button">Ana Sayfa</button>
-    <button id="button">Hakimizda</button>
+<header id="pageHeader" content="width=device-width, initial-scale=1.0">
+    <img src="https://makdos.blog/static/img/bloglogo-112x39.png" alt="Makdos Blog">
+    <a href="http://127.0.0.1:8000/blog/" class="button">Ana Sayfa</a>
+    <a href="https://makdos.blog/makdos-hakkimizda/" class="button">Hakkımızda</a>
+    <img src="https://makdos.com/_assets/img/logos/logo.png" style="max-height: 30px;margin-left: 900px" alt="Makdos Blog">
     <input type="text" class="searchTerm" placeholder="Arama kriterlerini belirtin">
     <button type="submit" class="searchButton">
         <i class="fa fa-search">SEARCH</i>
+
     </button>
+
 
 </header>
 
@@ -168,11 +175,27 @@
 
     {% endfor %}
 
+    <div id="filtreler" style="margin-top: 20px; background: orange">Filtreler<br>
+        {% for k in list4 %}
 
+
+            <a href="/cat/{{ k }}/">{{ k }}</a><br>
+
+        {% endfor %}
+    </div>
+
+    <div id="Other" style="margin-top: 20px;background: brown ">Others<br>
+        {% for k in list4 %}
+
+
+            <a href="/cat/{{ k }}/">{{ k }}</a><br>
+
+        {% endfor %}
+    </div>
 </nav>
 
-<div id="filtreler">Filtreler</div>
-{#<footer id="pageFooter">Gerekirse</footer>#}
-{% block footer %}{% endblock footer %}
-
+<div id="filtreler">Son Eklenen 10 Makale</div>
+<footer id="pageFooter">Gerekirse
+    {% block footer %}{% endblock footer %}
+</footer>
 </body>
