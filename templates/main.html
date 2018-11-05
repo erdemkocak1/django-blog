@@ -1,123 +1,178 @@
+{#{% extends "footer.html" %}#}
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Makaleler</title>
+<title>Makaleler</title>
+<style>
+    body {
+        display: grid;
+        grid-template-areas: "header header header" "nav article ads" "footer footer footer";
+        grid-template-rows: 50px 1fr 50px;
+        grid-template-columns: 10% 1fr 10%;
+        grid-gap: 0px;
+        background: white;
+        height: 100vh;
+        margin: 0;
+    }
 
-    <style>
-        table {
-            background: lightgrey;
-            border-collapse: collapse;
-            width: 75%;
-            position: center;
+    #pageHeader {
+        grid-area: header;
+    }
 
-        }
+    #pageFooter {
+        grid-area: footer;
+        background: aquamarine;
+    }
 
-        table, th, td {
-            border: 1px solid black;
-            height: 30px;
-            padding: 5px;
-        }
+    #makaleler {
+        grid-area: article;
+        white-space: nowrap;
 
-        th {
-            background: cornflowerblue;
-        }
+    }
 
-        td {
-            width: 250px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 50px;
-        }
+    #kategoriler {
+        grid-area: nav;
+        text-align: center;
+    }
 
-        .pagination {
-            display: inline-block;
-            margin-left: 230px;
+    #filtreler {
+        grid-area: ads;
+        text-align: center;
+    }
 
-        }
+    nav, div {
+        padding: 0px;
+        background: grey;
+    }
 
-        .pagination a {
-            color: black;
-            float: left;
-            padding: 8px 16px;
-            text-decoration: none;
-            margin-left: 0px;
+    header, footer, article {
+        padding: 0px;
+        background: lightgray;
+    }
 
-        }
+    table {
+        background: lightgrey;
+        border-collapse: collapse;
+        width: 100%;
+        position: center;
+    }
 
-        .pagination a.active {
-            background-color: cornflowerblue;
-            color: white;
-        }
+    table, th, td {
+        border: 1px solid black;
+        height: 30px;
+        padding: 5px;
+    }
 
-        .pagination a:hover:not(.active) {
-            background-color: yellow;
-        }
+    th {
+        background: cornflowerblue;
+    }
 
-    </style>
+    .pagination {
+        display: inline-block;
+        margin-left: 0px;
 
-</head>
+    }
 
+    .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        margin-left: 0px;
+
+    }
+
+    .pagination a.active {
+        background-color: cornflowerblue;
+        color: white;
+    }
+
+    .pagination a:hover:not(.active) {
+        background-color: yellow;
+    }
+
+</style>
 
 <body>
+<header id="pageHeader">
+    <button id="button">Ana Sayfa</button>
+    <button id="button">Hakimizda</button>
+    <input type="text" class="searchTerm" placeholder="Arama kriterlerini belirtin">
+    <button type="submit" class="searchButton">
+        <i class="fa fa-search">SEARCH</i>
+    </button>
 
-<table class="table table-hover table-dark" align="center">
-    <thead>
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">Baslik</th>
-        <th scope="col">İçerik</th>
-        <th scope="col">Yazar</th>
-        <th scope="col">Kategori</th>
-        <th scope="col">Olusturulma Zamani</th>
-        <th scope="col">Okuma Süresi</th>
+</header>
 
-    </tr>
-    </thead>
-    <tbody>
-    {% for i in blog_list %}
+<article id="makaleler">
+    <table class="table table-hover table-dark" align="center">
+        <thead>
         <tr>
-            <th scope="row"></th>
-            <td><a href="/blog/detay/{{ i.slug }}/">{{ i.title }}</a></td>
-            <td>{{ i.body }}</td>
-            <td>{{ i.author }}</td>
-            <td><a href="/cat/{{ i.category.slug }}/">{{ i.category }}</a></td>
+            <th scope="col">#</th>
+            <th scope="col">Baslik</th>
+            <th scope="col">Yazar</th>
+            <th scope="col">Kategori</th>
+            <th scope="col">Olusturulma Zamani</th>
+            <th scope="col">Okuma Süresi</th>
 
-            <td>{{ i.dateet }}</td>
-            <td>{{ i.timeread }}dk</td>
         </tr>
+        </thead>
+        <tbody>
+        {% for i in blog_list %}
+            <tr>
+                <th scope="row">i</th>
+                <td><a href="/blog/detay/{{ i.slug }}/">{{ i.title }}</a></td>
+                <td>{{ i.author }}</td>
+                <td>{{ i.category }}</td>
+                <td>{{ i.dateet }}</td>
+                <td>{{ i.timeread }}dk</td>
+            </tr>
+
+        {% endfor %}
+
+
+        </tbody>
+    </table>
+    {% if blog_list.has_other_pages %}
+        <div class="col-md-7 col-md-offset-1 center">
+            <div class="pagination">
+                {% if blog_list.has_previous %}
+                    <a href="?sayfa={{ blog_list.previous_page_number }}&aranan={{ request.GET.aranan }}">&laquo;</a>
+                {% else %}
+                    <p class="disabled">
+
+                    </p>
+                {% endif %}
+                {% for i in blog_list.paginator.page_range %}
+                    {% if blog_list.number == i %}
+                        <a href="?sayfa={{ i }}&aranan={{ request.GET.aranan }}" class="active">{{ i }}</a>
+                    {% else %}
+                        <a href="?sayfa={{ i }}&aranan={{ request.GET.aranan }}">{{ i }}</a>
+                    {% endif %}
+                {% endfor %}
+                {% if blog_list.has_next %}
+                    <a href="?sayfa={{ blog_list.next_page_number }}&aranan={{ request.GET.aranan }}">&raquo;</a>
+                {% else %}
+                    <p class="disabled">
+                    </p>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+
+</article>
+<nav id="kategoriler">Kategoriler<br>
+    {% for k in list4 %}
+
+
+        <a href="/cat/{{ k }}/">{{ k }}</a><br>
 
     {% endfor %}
 
-    </tbody>
-</table>
-{% if blog_list.has_other_pages %}
-    <div class="col-md-7 col-md-offset-1 center">
-        <div class="pagination">
-            {% if blog_list.has_previous %}
-                <a href="?sayfa={{ blog_list.previous_page_number }}&aranan={{ request.GET.aranan }}">&laquo;</a>
-            {% else %}
-                <p class="disabled">
 
-                </p>
-            {% endif %}
-            {% for i in blog_list.paginator.page_range %}
-                {% if blog_list.number == i %}
-                    <a href="?sayfa={{ i }}&aranan={{ request.GET.aranan }}" class="active">{{ i }}</a>
-                {% else %}
-                    <a href="?sayfa={{ i }}&aranan={{ request.GET.aranan }}">{{ i }}</a>
-                {% endif %}
-            {% endfor %}
-            {% if blog_list.has_next %}
-                <a href="?sayfa={{ blog_list.next_page_number }}&aranan={{ request.GET.aranan }}">&raquo;</a>
-            {% else %}
-                <p class="disabled">
-                </p>
-            {% endif %}
-        </div>
-    </div>
-{% endif %}
+</nav>
+
+<div id="filtreler">Filtreler</div>
+{#<footer id="pageFooter">Gerekirse</footer>#}
+{% block footer %}{% endblock footer %}
 
 </body>
-</html>

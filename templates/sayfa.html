@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+{#{% extends "footer.html" %}#}
+<head>
+    <meta charset="UTF-8">
+    <title>Makaleler</title>
+
+    <style>
+        table {
+            background: lightgrey;
+            border-collapse: collapse;
+            width: 75%;
+            position: center;
+
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            height: 30px;
+            padding: 5px;
+        }
+
+        th {
+            background: cornflowerblue;
+        }
+
+        td {
+            width: 250px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 50px;
+        }
+
+        .pagination {
+            display: inline-block;
+            margin-left: 230px;
+
+        }
+
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            margin-left: 0px;
+
+        }
+
+        .pagination a.active {
+            background-color: cornflowerblue;
+            color: white;
+        }
+
+        .pagination a:hover:not(.active) {
+            background-color: yellow;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<article id="makaleler">
+    <table class="table table-hover table-dark" align="center">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Baslik</th>
+            <th scope="col">İçerik</th>
+            <th scope="col">Yazar</th>
+            <th scope="col">Kategori</th>
+            <th scope="col">Olusturulma Zamani</th>
+            <th scope="col">Okuma Süresi</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in blog_list %}
+            <tr>
+                <th scope="row"></th>
+                <td><a href="/blog/detay/{{ i.slug }}/">{{ i.title }}</a></td>
+                <td>{{ i.body }}</td>
+                <td>{{ i.author }}</td>
+                <td><a href="/cat/{{ i.category.slug }}/">{{ i.category }}</a></td>
+
+                <td>{{ i.dateet }}</td>
+                <td>{{ i.timeread }}dk</td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+    </table>
+    {% if blog_list.has_other_pages %}
+        <div class="col-md-7 col-md-offset-1 center">
+            <div class="pagination">
+                {% if blog_list.has_previous %}
+                    <a href="?sayfa={{ blog_list.previous_page_number }}&aranan={{ request.GET.aranan }}">&laquo;</a>
+                {% else %}
+                    <p class="disabled">
+
+                    </p>
+                {% endif %}
+                {% for i in blog_list.paginator.page_range %}
+                    {% if blog_list.number == i %}
+                        <a href="?sayfa={{ i }}&aranan={{ request.GET.aranan }}" class="active">{{ i }}</a>
+                    {% else %}
+                        <a href="?sayfa={{ i }}&aranan={{ request.GET.aranan }}">{{ i }}</a>
+                    {% endif %}
+                {% endfor %}
+                {% if blog_list.has_next %}
+                    <a href="?sayfa={{ blog_list.next_page_number }}&aranan={{ request.GET.aranan }}">&raquo;</a>
+                {% else %}
+                    <p class="disabled">
+                    </p>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+</article>
+<nav id="kategoriler">Kategoriler<br>
+    {% for k in list4 %}
+
+
+        <a href="/cat/{{ k }}/">{{ k }}</a><br>
+
+    {% endfor %}
+
+
+</nav>
+
+</body>
+
+{% block footer %}{% endblock footer %}
+</html>

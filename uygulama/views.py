@@ -10,11 +10,34 @@ from uygulama.models import Blog, Category
 
 
 def blog(request):
-    blog_list = Blog.objects.filter(durum=True)                             # Tüm blog listesi içinde durumu erişime açık olanları filtreler ve onları bir listeye atar.
+    blog_list = Blog.objects.filter(durum=True)  # Tüm blog listesi içinde durumu erişime açık olanları filtreler ve onları bir listeye atar.
 
     # liste=[]
     # for k in range (1,len(blog_list)+1):
     #     liste.append(k)
+
+    # list1=[]
+    # for c in blog_list:
+    #     list1.append(c.category)
+    # # print(list1)
+    #
+    # list2 = []
+    # for k in list1:
+    #     if k not in list2:
+    #         list2.append(k)
+    # list2.__str__().replace("<Category:", "")
+    # print(list2)
+
+    list3 = []
+    for s in blog_list:
+        list3.append(s.category.slug)
+    # print(list3)
+
+    list4 = []
+    for l in list3:
+        if l not in list4:
+            list4.append(l)
+    # print(list4)
 
     page = request.GET.get('sayfa', 1)
 
@@ -26,10 +49,7 @@ def blog(request):
     except EmptyPage:
         blog_list = paginator.page(paginator.num_pages)
 
-
-
-
-    return render(request, 'main.html', {'blog_list': blog_list})           # Yukarıdaki filtre uygulandıktan sonra listelenen içeriği belirtilen html sayfasına yazdırma işlemini yapar.
+    return render(request, 'main.html', {'blog_list': blog_list, 'list4': list4})  # Yukarıdaki filtre uygulandıktan sonra listelenen içeriği belirtilen html sayfasına yazdırma işlemini yapar.
 
 
 def blogdetay(request, slug):
@@ -40,4 +60,5 @@ def blogdetay(request, slug):
 
 def categorysec(request, slug):
     category_sec = Blog.objects.filter(category__slug=slug)
+
     return render(request, 'category.html', {'category_sec': category_sec})
