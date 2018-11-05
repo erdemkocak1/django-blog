@@ -1,121 +1,16 @@
-{#{% extends "footer.html" %}#}
+{% extends "gerekli.html" %}
 
-<!DOCTYPE html>
-<title>Makaleler</title>
-<style>
-    body {
-        display: grid;
-        grid-template-areas: "header header header" "nav article ads" "footer footer footer";
-        grid-template-rows: 50px 1fr 50px;
-        grid-template-columns: 10% 1fr 20%;
-        grid-gap: 2px;
-        background: white;
-        height: 100vh;
-        margin: 0;
-    }
+{% block title %}Main{% endblock title %}
 
-    #pageHeader {
-        grid-area: header;
-    }
+{% block orta %} <!-- main.html block orta -->
 
-    #pageFooter {
-        grid-area: footer;
-        background: aquamarine;
-    }
+<article id="makaleler"> Makaleler
 
-    #makaleler {
-        grid-area: article;
-        white-space: nowrap;
-        background: white;
-
-    }
-
-    #kategoriler {
-        grid-area: nav;
-        text-align: center;
-        background-color: white;
-    }
-
-    #filtreler {
-        grid-area: ads;
-        text-align: center;
-        background: limegreen;
-    }
-
-    nav, div {
-        padding: 0px;
-        background: white;
-    }
-
-    header, footer, article {
-        padding: 0px;
-        background: lightgray;
-    }
-
-    table {
-        background: lightgrey;
-        border-collapse: collapse;
-    {#width: 112%;#} width: 100%;
-        position: center;
-    }
-
-    table, th, td {
-        border: 1px solid black;
-        height: 30px;
-        padding: 5px;
-    }
-
-    th {
-        background: cornflowerblue;
-    }
-
-    .pagination {
-        display: inline-block;
-        margin-left: 0px;
-
-    }
-
-    .pagination a {
-        color: black;
-        float: left;
-        padding: 8px 16px;
-        text-decoration: none;
-        margin-left: 0px;
-
-    }
-
-    .pagination a.active {
-        background-color: cornflowerblue;
-        color: white;
-    }
-
-    .pagination a:hover:not(.active) {
-        background-color: yellow;
-    }
-
-</style>
-
-<body>
-<header id="pageHeader" content="width=device-width, initial-scale=1.0">
-    <img src="https://makdos.blog/static/img/bloglogo-112x39.png" alt="Makdos Blog">
-    <a href="http://127.0.0.1:8000/blog/" class="button">Ana Sayfa</a>
-    <a href="https://makdos.blog/makdos-hakkimizda/" class="button">Hakkımızda</a>
-    <img src="https://makdos.com/_assets/img/logos/logo.png" style="max-height: 30px;margin-left: 900px" alt="Makdos Blog">
-    <input type="text" class="searchTerm" placeholder="Arama kriterlerini belirtin">
-    <button type="submit" class="searchButton">
-        <i class="fa fa-search">SEARCH</i>
-
-    </button>
-
-
-</header>
-
-<article id="makaleler">
-    <table class="table table-hover table-dark" align="center">
+    <table class="table table-hover table-dark"  align="center">
         <thead>
         <tr>
-            <th scope="col">#</th>
             <th scope="col">Baslik</th>
+            <th scope="col">İçerik</th>
             <th scope="col">Yazar</th>
             <th scope="col">Kategori</th>
             <th scope="col">Olusturulma Zamani</th>
@@ -126,8 +21,8 @@
         <tbody>
         {% for i in blog_list %}
             <tr>
-                <th scope="row">i</th>
                 <td><a href="/blog/detay/{{ i.slug }}/">{{ i.title }}</a></td>
+                <td>{{ i.body|truncatechars:20  }}</td>
                 <td>{{ i.author }}</td>
                 <td>{{ i.category }}</td>
                 <td>{{ i.dateet }}</td>
@@ -167,35 +62,5 @@
     {% endif %}
 
 </article>
-<nav id="kategoriler">Kategoriler<br>
-    {% for k in list4 %}
 
-
-        <a href="/cat/{{ k }}/">{{ k }}</a><br>
-
-    {% endfor %}
-
-    <div id="filtreler" style="margin-top: 20px; background: orange">Filtreler<br>
-        {% for k in list4 %}
-
-
-            <a href="/cat/{{ k }}/">{{ k }}</a><br>
-
-        {% endfor %}
-    </div>
-
-    <div id="Other" style="margin-top: 20px;background: brown ">Others<br>
-        {% for k in list4 %}
-
-
-            <a href="/cat/{{ k }}/">{{ k }}</a><br>
-
-        {% endfor %}
-    </div>
-</nav>
-
-<div id="filtreler">Son Eklenen 10 Makale</div>
-<footer id="pageFooter">Gerekirse
-    {% block footer %}{% endblock footer %}
-</footer>
-</body>
+{% endblock orta %}

@@ -31,13 +31,20 @@ def blog(request):
     list3 = []
     for s in blog_list:
         list3.append(s.category.slug)
-    # print(list3)
 
     list4 = []
     for l in list3:
         if l not in list4:
             list4.append(l)
-    # print(list4)
+    #
+    #
+    # list5 = []
+    # for t in blog_list:
+    #     list5.append(t.dateet)
+    # list5 = sorted(list5)
+    # print(list5)
+    #
+
 
     page = request.GET.get('sayfa', 1)
 
@@ -70,7 +77,5 @@ def categorysec(request, slug):
         category_sec = paginator.page(1)
     except EmptyPage:
         category_sec = paginator.page(paginator.num_pages)
-
-
 
     return render(request, 'category.html', {'category_sec': category_sec})

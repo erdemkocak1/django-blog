@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<title>{% block title %}{% endblock title %} | MAkdos Blog</title>
+
+<style>
+    body {
+        display: grid;
+        grid-template-areas: "header header header" "nav article ads" "footer footer footer";
+        grid-template-rows: 50px 1fr 50px;
+        grid-template-columns: 10% 1fr 20%;
+        grid-gap: 5px;
+        background: white;
+        height: 100vh;
+        margin: 0;
+    }
+
+    #pageHeader {
+        grid-area: header;
+    }
+
+    #pageFooter {
+        grid-area: footer;
+        background: aquamarine;
+    }
+
+    #makaleler {
+        grid-area: article;
+        white-space: nowrap;
+        background: white;
+
+    }
+
+    #kategoriler {
+        grid-area: nav;
+        text-align: center;
+        background-color: white;
+    }
+
+    #filtreler {
+        grid-area: ads;
+        text-align: center;
+        background: white;
+        margin-left: 20px;
+    }
+
+    nav, div {
+        padding: 0px;
+        background: white;
+    }
+
+    header, footer {
+        padding: 0px;
+        background: deepskyblue;
+        text-align: center
+    }
+
+    table {
+        background: lightgrey;
+        border-collapse: collapse;
+        width: 100%;
+        position: center;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        height: 30px;
+        padding: 5px;
+    }
+
+    th {
+        background: cornflowerblue;
+    }
+
+    .pagination {
+        display: inline-block;
+        margin-left: 0px;
+
+    }
+
+    .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        margin-left: 0px;
+
+    }
+
+    .pagination a.active {
+        background-color: cornflowerblue;
+        color: white;
+    }
+
+    .pagination a:hover:not(.active) {
+        background-color: yellow;
+    }
+
+    .table2 th {
+        background: orange;
+    }
+
+</style>
+
+<body>
+<header id="pageHeader" content="width=device-width, initial-scale=1.0">
+    <img src="https://makdos.blog/static/img/bloglogo-112x39.png" alt="Makdos Blog">
+    <a href="http://127.0.0.1:8000/blog/" class="button">Ana Sayfa</a>
+    <a href="https://makdos.blog/makdos-hakkimizda/" class="button">Hakkımızda</a>
+    <img src="https://makdos.com/_assets/img/logos/logo.png" style="max-height: 30px;margin-left: 850px" alt="Makdos Blog">
+    <input type="text" class="searchTerm" placeholder="Arama kriterlerini belirtin">
+    <button type="submit" class="searchButton">
+        <i class="fa fa-search">SEARCH</i>
+
+    </button>
+
+
+</header>
+
+{% block orta %}{% endblock orta %} <!-- gerekli endblock orta -->
+
+
+<nav id="kategoriler">Kategoriler<br>
+    {% for k in list4 %}
+
+
+        <a href="/cat/{{ k }}/">{{ k }}</a><br>
+
+    {% endfor %}
+
+    <div id="Other" style="margin-top: 20px; background: orange">Filtreler<br>
+        {% for k in list4 %}
+
+
+            <a href="/cat/{{ k }}/">{{ k }}</a><br>
+
+        {% endfor %}
+    </div>
+
+    <div id="Other" style="margin-top: 20px;background: brown ">Others<br>
+        {% for k in list4 %}
+
+
+            <a href="/cat/{{ k }}/">{{ k }}</a><br>
+
+        {% endfor %}
+    </div>
+</nav>
+
+<div id="filtreler">Son Eklenen 10 Makale
+
+    <table class="table2 table-hover table-dark" style="word-wrap:break-word;" align="center">
+
+        <tbody>
+        <tr>
+            <td>Başlık Başlık Başlık Başlık Başlık Başlık</td>
+            <td>Yazar</td>
+            <td>...dk</td>
+        </tr>
+        <tr>
+            <td>Başlık</td>
+            <td>Yazar</td>
+            <td>...dk</td>
+        </tr>
+        <tr>
+            <td>Başlık</td>
+            <td>Yazar</td>
+            <td>...dk</td>
+        </tr>
+
+
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+
+{% block footer %}{% endblock footer %}

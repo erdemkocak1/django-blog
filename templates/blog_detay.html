@@ -1,50 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ blog_detay.title }}</title>
+{% extends "gerekli.html" %}
 
-    <style>
-        table {
-            background: lightgrey;
-            border-collapse: collapse;
-            width: 80%;
-            position: center;
+{% block title %}{{ blog_detay.title }}{% endblock title %}
 
-        }
-
-        table, th, td {
-            border: 1px solid black;
-            height: 40px;
-            padding: 5px;
-        }
-
-        th {
-            background: cornflowerblue;
-        }
-
-        td {
-            width: 250px;
-            white-space: initial;
-            max-width: 50px;
-            overflow: initial;
-        }
-
-        button {
-            margin-left: 190px;
-            margin-top: 2px;
-            width: 100px;
-            height: 40px;
-            background: cornflowerblue;
-            color: black;
-            border: none;
-
-        }
-
-    </style>
-</head>
-<body>
-
+{% block orta %} <!-- blog_detay.html block orta -->
 
 <table class="table table-bordered" align="center">
 
@@ -71,6 +29,5 @@
     </tbody>
 </table>
 <button onclick="window.location.href='http://127.0.0.1:8000/blog/'">Makalelere Dön</button>
+{% endblock orta %}
 
-</body>
-</html>
