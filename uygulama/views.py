@@ -36,14 +36,17 @@ def blog(request):
     for l in list3:
         if l not in list4:
             list4.append(l)
-    #
-    #
-    # list5 = []
-    # for t in blog_list:
-    #     list5.append(t.dateet)
-    # list5 = sorted(list5)
-    # print(list5)
-    #
+
+    list5 = []
+    for m in blog_list:
+        list5.append(m.title)
+    print(list5[-10:])
+
+    list6 = []
+    list6.extend(list5[-10:])
+    print(list6)
+    list6= list6[::-1]
+    print (list6)
 
 
     page = request.GET.get('sayfa', 1)
@@ -56,7 +59,7 @@ def blog(request):
     except EmptyPage:
         blog_list = paginator.page(paginator.num_pages)
 
-    return render(request, 'main.html', {'blog_list': blog_list, 'list4': list4})  # Yukarıdaki filtre uygulandıktan sonra listelenen içeriği belirtilen html sayfasına yazdırma işlemini yapar.
+    return render(request, 'main.html', {'blog_list': blog_list, 'list4': list4, 'list6': list6})  # Yukarıdaki filtre uygulandıktan sonra listelenen içeriği belirtilen html sayfasına yazdırma işlemini yapar.
 
 
 def blogdetay(request, slug):

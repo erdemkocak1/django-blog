@@ -4,63 +4,85 @@
 
 {% block orta %} <!-- main.html block orta -->
 
-<article id="makaleler"> Makaleler
+    <article id="makaleler"> Makaleler
 
-    <table class="table table-hover table-dark"  align="center">
-        <thead>
-        <tr>
-            <th scope="col">Baslik</th>
-            <th scope="col">İçerik</th>
-            <th scope="col">Yazar</th>
-            <th scope="col">Kategori</th>
-            <th scope="col">Olusturulma Zamani</th>
-            <th scope="col">Okuma Süresi</th>
-
-        </tr>
-        </thead>
-        <tbody>
-        {% for i in blog_list %}
+        <table class="table table-hover table-dark" align="center">
+            <thead>
             <tr>
-                <td><a href="/blog/detay/{{ i.slug }}/">{{ i.title }}</a></td>
-                <td>{{ i.body|truncatechars:20  }}</td>
-                <td>{{ i.author }}</td>
-                <td>{{ i.category }}</td>
-                <td>{{ i.dateet }}</td>
-                <td>{{ i.timeread }}dk</td>
+                <th scope="col">Baslik</th>
+                <th scope="col">İçerik</th>
+                <th scope="col">Yazar</th>
+                <th scope="col">Kategori</th>
+                <th scope="col">Olusturulma Zamani</th>
+                <th scope="col">Okuma Süresi</th>
+
             </tr>
+            </thead>
+            <tbody>
+            {% for i in blog_list %}
+                <tr>
+                    <td><a href="/blog/detay/{{ i.slug }}/">{{ i.title }}</a></td>
+                    <td>{{ i.body|truncatewords:5 }}</td>
+                    <td>{{ i.author }}</td>
+                    <td>{{ i.category }}</td>
+                    <td>{{ i.dateet }}</td>
+                    <td>{{ i.timeread }}dk</td>
+                </tr>
 
-        {% endfor %}
+            {% endfor %}
 
 
-        </tbody>
-    </table>
-    {% if blog_list.has_other_pages %}
-        <div class="col-md-7 col-md-offset-1 center">
-            <div class="pagination">
-                {% if blog_list.has_previous %}
-                    <a href="?sayfa={{ blog_list.previous_page_number }}&aranan={{ request.GET.aranan }}">&laquo;</a>
-                {% else %}
-                    <p class="disabled">
-
-                    </p>
-                {% endif %}
-                {% for i in blog_list.paginator.page_range %}
-                    {% if blog_list.number == i %}
-                        <a href="?sayfa={{ i }}&aranan={{ request.GET.aranan }}" class="active">{{ i }}</a>
+            </tbody>
+        </table>
+        {% if blog_list.has_other_pages %}
+            <div class="col-md-7 col-md-offset-1 center">
+                <div class="pagination">
+                    {% if blog_list.has_previous %}
+                        <a href="?sayfa={{ blog_list.previous_page_number }}&aranan={{ request.GET.aranan }}">&laquo;</a>
                     {% else %}
-                        <a href="?sayfa={{ i }}&aranan={{ request.GET.aranan }}">{{ i }}</a>
-                    {% endif %}
-                {% endfor %}
-                {% if blog_list.has_next %}
-                    <a href="?sayfa={{ blog_list.next_page_number }}&aranan={{ request.GET.aranan }}">&raquo;</a>
-                {% else %}
-                    <p class="disabled">
-                    </p>
-                {% endif %}
-            </div>
-        </div>
-    {% endif %}
+                        <p class="disabled">
 
-</article>
+                        </p>
+                    {% endif %}
+                    {% for i in blog_list.paginator.page_range %}
+                        {% if blog_list.number == i %}
+                            <a href="?sayfa={{ i }}&aranan={{ request.GET.aranan }}" class="active">{{ i }}</a>
+                        {% else %}
+                            <a href="?sayfa={{ i }}&aranan={{ request.GET.aranan }}">{{ i }}</a>
+                        {% endif %}
+                    {% endfor %}
+                    {% if blog_list.has_next %}
+                        <a href="?sayfa={{ blog_list.next_page_number }}&aranan={{ request.GET.aranan }}">&raquo;</a>
+                    {% else %}
+                        <p class="disabled">
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+
+    </article>
 
 {% endblock orta %}
+
+{% block filtreler %}
+    <div id="filtreler">Son Eklenen 10 Makale
+
+        <table class="table2 table-hover table-dark" style="word-wrap:break-word;" align="center">
+
+            <tbody>
+            {% for t in list6 %}
+                <tr>
+                    <td>{{ t }}</td>
+                </tr>
+
+
+
+                {% endfor %}
+
+
+            </tbody>
+        </table>
+
+    </div>
+{% endblock filtreler %}
