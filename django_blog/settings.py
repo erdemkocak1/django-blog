@@ -8,6 +8,13 @@ ALLOWED_HOSTS                                       = ["*"]
 
 STATIC_URL                                          = '/static/'
 STATIC_ROOT                                         = os.path.join(BASE_DIR, 'static')              ##### Sunucu için
+SESSION_EXPIRE_AT_BROWSER_CLOSE                     = True
+SESSION_COOKIE_HTTPONLY                             = False
+SESSION_COOKIE_SECURE                               = True
+SESSION_SAVE_EVERY_REQUEST                          = True
+SESSION_COOKIE_DOMAIN                               = 'blog.coolrio.pw'
+SECURE_SSL_REDIRECT                                 = True
+# SECURE_SSL_REDIRECT                                 = False                                       ### Lokal için
 # STATIC_ROOT                                         = ''                                          ### Lokal için
 # STATICFILES_DIRS                                    = (os.path.join(BASE_DIR, 'static'),)         ### Lokal için
 
@@ -68,12 +75,6 @@ USE_I18N                                            = True
 USE_L10N                                            = True
 USE_TZ                                              = True
 
-SESSION_EXPIRE_AT_BROWSER_CLOSE                     = True
-SESSION_COOKIE_HTTPONLY                             = True
-SESSION_COOKIE_SECURE                               = True
-SESSION_SAVE_EVERY_REQUEST                          = True
-SESSION_COOKIE_DOMAIN                               = 'blog.coolrio.pw'
-SECURE_SSL_REDIRECT                                 = False
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS                       = 99999 # Toplu silme işleminde limit
 SECRET_KEY                                          = 's-&qy=k7&yze*_$jz2lbb%2=k9+kv+3w0n%xe-&h_+55%-)%w345345345e'
