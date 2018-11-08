@@ -26,9 +26,9 @@ INSTALLED_APPS                                      = [
 DATABASES                                           = {
                                                            'default': {
                                                                'ENGINE': 'django.db.backends.postgresql_psycopg2',
-                                                               'NAME': 'blogdb',
-                                                               'USER': 'bloguser',
-                                                               'PASSWORD': 'Test+123',
+                                                               'NAME': 'blogcoolriodb',
+                                                               'USER': 'blogkullanici',
+                                                               'PASSWORD': 'blogpassword',
                                                                'HOST': '185.122.200.225',
                                                                'PORT': '',
                                                            },
@@ -72,7 +72,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE                     = True
 SESSION_COOKIE_HTTPONLY                             = True
 SESSION_COOKIE_SECURE                               = True
 SESSION_SAVE_EVERY_REQUEST                          = True
-SESSION_COOKIE_DOMAIN                               = '.coolrio.pw'
+SESSION_COOKIE_DOMAIN                               = 'blog.coolrio.pw'
 SECURE_SSL_REDIRECT                                 = False
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS                       = 99999 # Toplu silme işleminde limit
