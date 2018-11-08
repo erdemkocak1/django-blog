@@ -29,8 +29,8 @@ DATABASES                                           = {
                                                                'default': {
                                                                    'ENGINE': 'django.db.backends.postgresql_psycopg2',
                                                                    'NAME': 'blogdb',
-                                                                   'USER': 'veritabaniuser',
-                                                                   'PASSWORD': 'veritabaniPArola',
+                                                                   'USER': 'bloguser',
+                                                                   'PASSWORD': 'Test+123',
                                                                    'HOST': '185.122.200.225',
                                                                    'PORT': '5432',
                                                                     'CONN_MAX_AGE': 600,
