@@ -25,7 +25,7 @@ SECRET_KEY = 'ec1y0f7h7uhyeta*rjbie&j@)wv9-8v_%8znftka^j$i1a6pzw'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0','127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -74,12 +74,20 @@ WSGI_APPLICATION = 'django_blog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+DATABASES                                           = {
+
+                                                               'default': {
+                                                                   'ENGINE': 'django.db.backends.postgresql_psycopg2',
+                                                                   'NAME': 'blogdb',
+                                                                   'USER': 'veritabaniuser',
+                                                                   'PASSWORD': 'veritabaniPArola',
+                                                                   'HOST': '185.122.200.225',
+                                                                   'PORT': '5432',
+                                                                    'CONN_MAX_AGE': 600,
+                                                               },
+
+
+                                                       }
 
 
 # Password validation
