@@ -18,7 +18,7 @@ class BlogAdmin(admin.ModelAdmin):
     view_on_site = True
     search_fields = ['title', 'author']                                             # Arama yapıldığı zaman aramanın sorgulayacağı alanları belirtir
     list_max_show_all = False                                                       # Sayfada bütün içeriğin gösterilmesini ve belirlenen sayının üzerine çıkılmasını engeller.
-    list_per_page = 5                                                               # Admin sayfasında tek sayfada gösterilecek içeriğin sayısını belirtir.
+    list_per_page = 10                                                               # Admin sayfasında tek sayfada gösterilecek içeriğin sayısını belirtir.
     prepopulated_fields = {"slug": ("category", "title")}
 
 
