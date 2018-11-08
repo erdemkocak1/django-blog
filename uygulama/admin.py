@@ -12,7 +12,7 @@ class BlogAdmin(admin.ModelAdmin):
 
     fields = ('title', 'slug', 'category', 'body', 'author', 'durum', 'timeread')   # Yeni makale kaydı yapılacağı zaman doldurulacak alanlar.
 
-    list_filter = ('author', 'category', 'dateet')                                  # Admin sayfasında listelenen içerik için filtre uygulanacak nitelikler.(Bu durumda yazar-kategori-zaman gibi niteliklere göre filtre uygulanacak )
+    list_filter = ('author', 'category', 'dateet', 'durum')                                  # Admin sayfasında listelenen içerik için filtre uygulanacak nitelikler.(Bu durumda yazar-kategori-zaman gibi niteliklere göre filtre uygulanacak )
     list_display_links = ('title', 'category')                                      # Tıklandığında başka bir sayfaya yönlendirecek nitelikler için kullanılır.
     ordering = ('author', 'title', 'dateet')
     view_on_site = True
