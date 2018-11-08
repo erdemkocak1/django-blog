@@ -31,7 +31,7 @@ DATABASES                                           = {
                                                                    'NAME': 'blogdb',
                                                                    'USER': 'bloguser',
                                                                    'PASSWORD': 'Test+123',
-                                                                   'HOST': '185.122.200.225',
+                                                                   'HOST': '127.0.0.1',
                                                                    'PORT': '5432',
                                                                     'CONN_MAX_AGE': 600,
                                                                },
