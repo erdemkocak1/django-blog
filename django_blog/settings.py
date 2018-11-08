@@ -4,7 +4,7 @@ import os
 BASE_DIR                                            = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-DEBUG                                               = False ## runserver da True olmalı
+DEBUG                                               = True ## runserver da True olmalı
 ALLOWED_HOSTS                                       = ["*"]
 
 STATIC_URL                                          = '/static/'
