@@ -17,3 +17,7 @@ urlpatterns = [
 
 
 ]
+
+admin.site.site_header = 'urls.py__admin.site.site_header'
+admin.site.site_title = 'urls.py__admin.site.site_title'
+admin.site.index_title = 'urls.py__admin.site.index_title'
