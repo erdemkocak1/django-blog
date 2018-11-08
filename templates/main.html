@@ -4,7 +4,7 @@
 
 {% block orta %} <!-- main.html block orta -->
 
-    <article id="makaleler"> Makaleler
+    <article id="makaleler">
 
         <table class="table table-hover table-dark" align="center">
             <thead>
@@ -66,9 +66,10 @@
 {% endblock orta %}
 
 {% block filtreler %}
-    <div id="filtreler">Son Eklenen 10 Makale
+    <div id="filtreler">
 
         <table class="table2 table-hover table-dark" style="word-wrap:break-word;" align="center">
+            <th scope="col">Son 10 Makale</th>
 
             <tbody>
             {% for t in list6 %}
@@ -78,7 +79,7 @@
 
 
 
-                {% endfor %}
+            {% endfor %}
 
 
             </tbody>

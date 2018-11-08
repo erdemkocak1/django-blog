@@ -40,14 +40,10 @@ def blog(request):
     list5 = []
     for m in blog_list:
         list5.append(m.title)
-    print(list5[-10:])
 
     list6 = []
     list6.extend(list5[-10:])
-    print(list6)
-    list6= list6[::-1]
-    print (list6)
-
+    list6 = list6[::-1]
 
     page = request.GET.get('sayfa', 1)
 
