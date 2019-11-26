@@ -33,10 +33,10 @@ INSTALLED_APPS                                      = [
 DATABASES                                           = {
                                                            'default': {
                                                                'ENGINE': 'django.db.backends.postgresql_psycopg2',
-                                                               'NAME': 'blogcoolriodb',
-                                                               'USER': 'blogkullanici',
-                                                               'PASSWORD': 'blogpassword',
-                                                               'HOST': '185.122.200.225',
+                                                               'NAME': '',
+                                                               'USER': '',
+                                                               'PASSWORD': '',
+                                                               'HOST': '',
                                                                'PORT': '',
                                                            },
                                                        }
